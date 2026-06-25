@@ -1,0 +1,25 @@
+# 로컬 개발 환경 설정
+
+
+# 서버 설정
+server:
+  # 개발 편의를 위한 기본 포트 설정
+  port: 80
+
+
+spring:
+  # 데이터베이스 연결 정보 설정
+  datasource:
+    url: ${LOCAL_DB_URL}
+    username: ${LOCAL_DB_USERNAME}
+    driver-class-name: org.h2.Driver
+  # SQL 스크립트 초기화 설정
+  sql:
+    init:
+      mode: EMBEDDED
+      schema-locations: classpath:db/schema.sql
+  # H2 접속 정보
+  h2:
+    console:
+      path: /h2-console
+      enabled: true

@@ -1,0 +1,39 @@
+# 공통 환경 설정 및 기본 활성 프로파일 지정
+
+
+# 서버 설정
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+
+# 스프링 설정
+spring:
+  application:
+    name: rss
+    version: 1.0
+  # 환경 변수 파일 읽어들이기
+  config:
+    import:
+      - optional:file:.env[.properties]
+  profiles:
+    # 활성화될 프로파일 지정
+    active: local
+  # 애플리케이션 런타임시 배너 출력 비활성화
+  main:
+    banner-mode: OFF
+
+
+# 마이바티스 설정
+mybatis:
+  # 마이바티스 설정 파일 위치 지정
+  config-location: classpath:mappers/config/mybatis-config.xml
+  # 매퍼 XML 파일에서 파라미터 및 반환 타입 작성시, 클래스명으로만 참조할 수 있도록 해당 클래스의 패키지 경로 지정
+  type-aliases-package: com.suviny.rss.domain.**.model
+  # 사용자 정의 타입 핸들러가 위치한 패키지 지정
+  type-handlers-package: com.suviny.rss.global.common.mybatis.type
+  # 매퍼 XML 파일 경로 지정
+  mapper-locations: classpath:mappers/*_mapper.xml
